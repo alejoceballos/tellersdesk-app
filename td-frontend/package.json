@@ -1,12 +1,10 @@
 {
   "name": "td-frontend",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "Tellers' Desk Web Application",
+  "author": "Alejo Ceballos",
+  "license": "MIT",
   "private": true,
-  "dependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -15,6 +13,13 @@
     "lint": "./node_modules/.bin/eslint .",
     "lint:fix": "./node_modules/.bin/eslint . --fix"
   },
+  "keywords": [
+    "tellersdesk",
+    "storytelling",
+    "rpg",
+    "wod",
+    "world of darkness"
+  ],
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -24,8 +29,16 @@
     "not ie <= 11",
     "not op_mini all"
   ],
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "3.0.1",
+    "styled-components": "^4.2.0"
+  },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.13.0",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.2.0",
     "eslint-plugin-import": "^2.17.2",

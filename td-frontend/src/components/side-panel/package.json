@@ -1,0 +1,6 @@
+{
+  "name": "side-panel",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./side-panel.js"
+}

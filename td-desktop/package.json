@@ -2,6 +2,9 @@
   "name": "td-desktop",
   "version": "1.0.0",
   "description": "Tellers' Desk Desktop Platform for the Web Application",
+  "author": "Alejo Ceballos",
+  "license": "MIT",
+  "private": true,
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,8 +19,6 @@
     "wod",
     "world of darkness"
   ],
-  "author": "Alejo Ceballos",
-  "license": "MIT",
   "devDependencies": {
     "babel-eslint": "^10.0.1",
     "electron": "^5.0.1",
