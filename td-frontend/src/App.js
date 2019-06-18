@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import SidePanel from "./components/side-panel";
+import CharacterSheet from "./components/character/character-sheet/character-sheet";
 
 function App() {
   return (
     <div className="App">
-      <SidePanel />
+      <CharacterSheet />
     </div>
   );
 }

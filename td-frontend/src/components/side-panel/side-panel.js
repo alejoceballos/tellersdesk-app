@@ -11,8 +11,7 @@ const Container = styled.div`
   padding: 10px;
 `;
 
-const SidePanel = () => {
-  return <Container><div data-qa-id="side-panel">Side Panel</div></Container>;
-};
+const SidePanel = () => <Container><div data-qa-id="side-panel">Side Panel</div></Container>;
+
 
 export default SidePanel;
