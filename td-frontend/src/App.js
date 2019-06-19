@@ -16,7 +16,7 @@ class App extends React.Component {
     props, state
   ) {
     console.log(
-      'C,U - [App] getDerivedStateFromProps', {props, state, }
+      'C,U - [App] getDerivedStateFromProps', {props, state }
     );
 
     return true;
@@ -26,7 +26,7 @@ class App extends React.Component {
     nextProps, nextState
   ) {
     console.log(
-      'U - [App] shouldComponentUpdate', {nextProps, nextState, }
+      'U - [App] shouldComponentUpdate', {nextProps, nextState }
     );
   }
 
@@ -43,7 +43,7 @@ class App extends React.Component {
     prevProps, prevState
   ) {
     console.log(
-      'U - [App] getSnapshotBeforeUpdate', {prevProps, prevState, }
+      'U - [App] getSnapshotBeforeUpdate', {prevProps, prevState }
     );
   }
 

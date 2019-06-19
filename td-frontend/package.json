@@ -8,10 +8,12 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "yarn lint && react-scripts test --verbose ",
     "eject": "react-scripts eject",
     "lint": "./node_modules/.bin/eslint .",
-    "lint:fix": "./node_modules/.bin/eslint . --fix"
+    "lint:fix": "./node_modules/.bin/eslint . --fix",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "keywords": [
     "tellersdesk",
@@ -30,6 +32,11 @@
     "not op_mini all"
   ],
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.19",
+    "@fortawesome/free-brands-svg-icons": "^5.9.0",
+    "@fortawesome/free-regular-svg-icons": "^5.9.0",
+    "@fortawesome/free-solid-svg-icons": "^5.9.0",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
@@ -39,6 +46,10 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^5.1.8",
+    "@storybook/addon-links": "^5.1.8",
+    "@storybook/addons": "^5.1.8",
+    "@storybook/react": "^5.1.8",
     "babel-eslint": "^10.0.1",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.13.0",

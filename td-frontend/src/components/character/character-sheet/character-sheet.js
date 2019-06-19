@@ -19,7 +19,7 @@ class CharacterSheet extends React.Component {
     props, state
   ) {
     console.log(
-      'C,U - [CharacterSheet] getDerivedStateFromProps', {props, state, }
+      'C,U - [CharacterSheet] getDerivedStateFromProps', {props, state }
     );
 
     return true;
@@ -29,7 +29,7 @@ class CharacterSheet extends React.Component {
     nextProps, nextState
   ) {
     console.log(
-      'U - [CharacterSheet] shouldComponentUpdate', {nextProps, nextState, }
+      'U - [CharacterSheet] shouldComponentUpdate', {nextProps, nextState }
     );
   }
 
@@ -46,7 +46,7 @@ class CharacterSheet extends React.Component {
     prevProps, prevState
   ) {
     console.log(
-      'U - [CharacterSheet] getSnapshotBeforeUpdate', {prevProps, prevState, }
+      'U - [CharacterSheet] getSnapshotBeforeUpdate', {prevProps, prevState }
     );
   }
 

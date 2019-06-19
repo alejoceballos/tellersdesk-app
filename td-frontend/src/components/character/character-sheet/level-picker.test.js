@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, } from 'enzyme';
+import { shallow } from 'enzyme';
 import LevelPicker from "./level-picker";
 
 describe(
@@ -7,6 +7,7 @@ describe(
     it(
       'should render level picker', () => {
         const wrapper = shallow(<LevelPicker max={0} value={0} />);
+
         expect(wrapper.isEmptyRender()).toBeFalsy();
       }
     );
@@ -16,11 +17,10 @@ describe(
         const max = 5;
         const level = 3;
         const wrapper = shallow(<LevelPicker max={max} value={level} />);
-        expect(wrapper.find({'data-qa-id': 'level-picker-level', })).toHaveLength(max);
-        expect(wrapper.find({'data-qa': 'level-picker-level-yes', })).toHaveLength(level);
-        expect(wrapper.find({'data-qa': 'level-picker-level-no', })).toHaveLength(max - level);
-        expect(wrapper.find({'data-qa': 'level-picker-level-yes', }).first().text()).toEqual('x');
-        expect(wrapper.find({'data-qa': 'level-picker-level-no', }).first().text()).toEqual('o');
+
+        expect(wrapper.find({'data-qa-id': 'level-picker-level' })).toHaveLength(max);
+        expect(wrapper.find({'data-qa': 'level-picker-level-yes' })).toHaveLength(level);
+        expect(wrapper.find({'data-qa': 'level-picker-level-no' })).toHaveLength(max - level);
       }
     );
 

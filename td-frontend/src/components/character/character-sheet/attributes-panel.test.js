@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, } from 'enzyme';
+import { shallow } from 'enzyme';
 import AttributesPanel from "./attributes-panel";
 
 describe(
@@ -15,7 +15,8 @@ describe(
     it(
       'should render level picker', () => {
         const attributesAmount = 9;
-        expect(wrapper.find({'data-qa': 'levelPicker', })).toHaveLength(attributesAmount); }
+
+        expect(wrapper.find({'data-qa': 'levelPicker' })).toHaveLength(attributesAmount); }
     );
   }
 );

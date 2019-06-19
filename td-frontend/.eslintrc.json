@@ -48,7 +48,17 @@
         "accessor-pairs": "warn",
         "array-callback-return": "error",
         "block-scoped-var": "error",
-        "class-methods-use-this": ["warn", { "exceptMethods": ["render"] }],
+        "class-methods-use-this": [
+            "warn", {
+                "exceptMethods": [
+                    "shouldComponentUpdate",
+                    "render",
+                    "getSnapshotBeforeUpdate",
+                    "componentDidMount",
+                    "componentDidUpdate"
+                ]
+            }
+        ],
         "complexity": "warn",
         "default-case": "warn",
         "no-alert": "warn",
@@ -118,7 +128,7 @@
         // "eslint brace-style": ["error", "1tbs", { "allowSingleLine": true }]
         "camelcase": "warn",
         "capitalized-comments": "off",
-        "comma-dangle": ["error", "always"],
+        "comma-dangle": ["error", "only-multiline"],
         "comma-spacing": ["warn", { "before": false, "after": true }],
         "comma-style": ["warn", "last"],
         "computed-property-spacing": ["warn", "never"],
