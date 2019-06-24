@@ -4,7 +4,13 @@ import CharacterSheet from "./character-sheet";
 
 describe(
   'Render', () => {
-    const wrapper = shallow(<CharacterSheet/>);
+    const character = {
+      attributeMaxValue: 0,
+      attributes: {}
+    };
+
+    const wrapper = shallow(<CharacterSheet character={character} />);
+
     it(
       'should render character sheet', () => {
         expect(wrapper.isEmptyRender()).toBeFalsy();

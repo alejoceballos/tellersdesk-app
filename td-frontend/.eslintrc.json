@@ -97,6 +97,14 @@
         "no-void": "warn",
         "no-warning-comments": "warn",
         "no-with": "warn",
+        //"object-curly-newline": [
+        //    "error",
+        //    {
+        //        "ObjectExpression": { "minProperties": 2 },
+        //        "ObjectPattern": "always"
+        //    }
+        //],
+        "object-property-newline": ["error", { "allowAllPropertiesOnSameLine": true }],
         // "prefer-named-capture-group": "warn",
         "prefer-promise-reject-errors": "warn",
         "radix": "warn",
@@ -125,7 +133,7 @@
         "array-bracket-newline": ["warn", "consistent"],
         "array-element-newline": "warn",
         "block-spacing": "warn",
-        // "eslint brace-style": ["error", "1tbs", { "allowSingleLine": true }]
+        // "brace-style": ["error", "1tbs", { "allowSingleLine": true }]
         "camelcase": "warn",
         "capitalized-comments": "off",
         "comma-dangle": ["error", "only-multiline"],
@@ -147,5 +155,9 @@
         "jsx-quotes": "warn",
         // ...
         "semi": "warn"
+
+        //"style-prop-object": true,
+        //"jsx-closing-tag-location": true,
+        //"jsx-wrap-multilines": [true, {"declaration": "parens-new-line"}]
     }
 }

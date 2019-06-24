@@ -6,35 +6,51 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle as fasCircle} from '@fortawesome/free-solid-svg-icons';
 import { faCircle as farCircle} from '@fortawesome/free-regular-svg-icons';
 
-const dataQaId = 'level-picker-level';
+class LevelPicker extends React.Component {
 
-const LevelPicker = (props) => {
-  const { value, max } = props;
+  shouldComponentUpdate(nextProps) {
+    return nextProps.value !== this.props.value || nextProps.max !== this.props.max;
+  }
 
-  const levels = map(
-    new Array(max), (
-      item, index
-    ) => {
-      const isLevel = index < value;
-      const dataQa = `${dataQaId}-${isLevel ? 'yes' : 'no'}`;
-      const icon = isLevel ? fasCircle : farCircle;
+  render() {
+    const {
+      value,
+      max
+    } = this.props;
 
-      return (
-        <span data-qa-id={dataQaId} data-qa={dataQa} key={uuid()}>
-          <FontAwesomeIcon icon={icon} />
-        </span>
-      );
-    }
-  );
+    const INCREMENT = 1;
 
-  return (
-    <>{levels}</>
-  );
-};
+    const levels = map(
+      new Array(max), (
+        item, index
+      ) => {
+        const onCLick = () => {
+          const newValue = index + INCREMENT;
+          this.props.onLevelClick(newValue);
+        };
+
+        const isLevel = index < value;
+        const dataQa = `level-picker-${isLevel ? 'yes' : 'no'}`;
+        const icon = isLevel ? fasCircle : farCircle;
+
+        return (
+          <span data-qa={dataQa} key={uuid()} onClick={onCLick}>
+            <FontAwesomeIcon icon={icon}/>
+          </span>
+        );
+      }
+    );
+
+    return (
+      <>{levels}</>
+    );
+  }
+}
 
 LevelPicker.propTypes = {
   value: PropTypes.number.isRequired,
   max: PropTypes.number.isRequired,
+  onLevelClick: PropTypes.func
 };
 
 export default LevelPicker;

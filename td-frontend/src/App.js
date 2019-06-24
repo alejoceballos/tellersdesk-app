@@ -1,60 +1,42 @@
 import React from 'react';
 import './App.css';
+import character from './services/character-service';
+import { cloneDeep } from 'lodash';
+
 import CharacterSheet from "./components/character/character-sheet/character-sheet";
 
 class App extends React.Component {
-  state = {
 
+  state = {
+    character
   };
 
   constructor(props) {
     super(props);
-    console.log('C - [App] constructor');
   }
 
-  static getDerivedStateFromProps(
-    props, state
+  onAttributeClick(
+    attribute, value
   ) {
-    console.log(
-      'C,U - [App] getDerivedStateFromProps', {props, state }
-    );
-
-    return true;
-  }
-
-  shouldComponentUpdate(
-    nextProps, nextState
-  ) {
-    console.log(
-      'U - [App] shouldComponentUpdate', {nextProps, nextState }
-    );
+    const clone = cloneDeep(this.state.character);
+    clone.attributes[attribute].value = value;
+    this.setState({ character: clone });
   }
 
   render() {
-    console.log('C - [App] render');
     return (
       <div className="App">
-        <CharacterSheet />
+        <CharacterSheet
+          character={this.state.character}
+          onAttributeClick={(
+            attribute, value
+          ) => this.onAttributeClick(
+            attribute, value
+          )}
+        />
       </div>
     );
   }
-
-  getSnapshotBeforeUpdate(
-    prevProps, prevState
-  ) {
-    console.log(
-      'U - [App] getSnapshotBeforeUpdate', {prevProps, prevState }
-    );
-  }
-
-  componentDidMount() {
-    console.log('C - [App] componentDidMount');
-  }
-
-  componentDidUpdate() {
-    console.log('U - [App] componentDidUpdate');
-  }
-
 }
 
 export default App;

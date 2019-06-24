@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from "styled-components";
 import BorderedStyle from "../../bordered-style";
 import AttributesPanel from "./attributes-panel";
@@ -6,58 +7,40 @@ import AttributesPanel from "./attributes-panel";
 const Container = styled(BorderedStyle)``;
 
 class CharacterSheet extends React.Component {
-  state = {
 
-  };
-
-  constructor(props) {
-    super(props);
-    console.log('C - [CharacterSheet] constructor');
-  }
-
-  static getDerivedStateFromProps(
-    props, state
+  onAttributeClick(
+    attribute, value
   ) {
-    console.log(
-      'C,U - [CharacterSheet] getDerivedStateFromProps', {props, state }
-    );
-
-    return true;
-  }
-
-  shouldComponentUpdate(
-    nextProps, nextState
-  ) {
-    console.log(
-      'U - [CharacterSheet] shouldComponentUpdate', {nextProps, nextState }
+    this.props.onAttributeClick(
+      attribute, value
     );
   }
+
 
   render() {
-    console.log('C - [CharacterSheet] render');
+    const {attributes} = this.props.character;
+
     return (
       <Container>
-        <AttributesPanel data-qa="attributesPanel"/>
+        <AttributesPanel
+          data-qa="attributesPanel"
+          attributeMaxValue={attributes.attributeMaxValue}
+          attributes={attributes}
+          onAttributeClick={(
+            attribute, value
+          ) => this.onAttributeClick(
+            attribute, value
+          )}
+        />
       </Container>
     );
   }
 
-  getSnapshotBeforeUpdate(
-    prevProps, prevState
-  ) {
-    console.log(
-      'U - [CharacterSheet] getSnapshotBeforeUpdate', {prevProps, prevState }
-    );
-  }
-
-  componentDidMount() {
-    console.log('C - [CharacterSheet] componentDidMount');
-  }
-
-  componentDidUpdate() {
-    console.log('U - [CharacterSheet] componentDidUpdate');
-  }
-
 }
+
+CharacterSheet.propTypes = {
+  character: PropTypes.object.isRequired,
+  onAttributeClick: PropTypes.func
+};
 
 export default CharacterSheet;
