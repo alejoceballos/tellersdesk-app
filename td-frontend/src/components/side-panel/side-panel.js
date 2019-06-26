@@ -13,5 +13,4 @@ const Container = styled.div`
 
 const SidePanel = () => <Container><div data-qa-id="side-panel">Side Panel</div></Container>;
 
-
 export default SidePanel;

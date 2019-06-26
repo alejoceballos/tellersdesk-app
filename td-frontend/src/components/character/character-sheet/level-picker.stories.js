@@ -14,9 +14,4 @@ export const levelPicker = {
 //   onArchiveTask: action('onArchiveTask'),
 // };
 
-storiesOf(
-  'LevelPicker', module
-)
-  .add(
-    'default', () => <LevelPicker {...levelPicker} />
-  );
+storiesOf('LevelPicker', module).add('default', () => <LevelPicker {...levelPicker} />);

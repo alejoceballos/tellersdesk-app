@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import { map } from 'lodash';
 import uuid from 'uuid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircle as fasCircle} from '@fortawesome/free-solid-svg-icons';
-import { faCircle as farCircle} from '@fortawesome/free-regular-svg-icons';
+import { faCircle as fasCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCircle as farCircle } from '@fortawesome/free-regular-svg-icons';
 
 class LevelPicker extends React.Component {
-
   shouldComponentUpdate(nextProps) {
     return nextProps.value !== this.props.value || nextProps.max !== this.props.max;
   }
@@ -21,9 +20,7 @@ class LevelPicker extends React.Component {
     const INCREMENT = 1;
 
     const levels = map(
-      new Array(max), (
-        item, index
-      ) => {
+      new Array(max), (item, index) => {
         const onCLick = () => {
           const newValue = index + INCREMENT;
           this.props.onLevelClick(newValue);
@@ -35,7 +32,7 @@ class LevelPicker extends React.Component {
 
         return (
           <span data-qa={dataQa} key={uuid()} onClick={onCLick}>
-            <FontAwesomeIcon icon={icon}/>
+            <FontAwesomeIcon icon={icon} />
           </span>
         );
       }

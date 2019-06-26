@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from "styled-components";
-import BorderedStyle from "../../bordered-style";
-import LevelPicker from "./level-picker";
+import styled from 'styled-components';
+import BorderedStyle from '../../bordered-style';
+import LevelPicker from './level-picker';
 
 const AttributesContainer = styled(BorderedStyle)`
   display: flex;
@@ -32,15 +32,11 @@ const LevelContainer = styled(BorderedStyle)`
 `;
 
 class AttributesPanel extends React.Component {
-
-  onLevelClick(
-    attribute, value
-  ) {
+  onLevelClick(attribute, value) {
     this.props.onAttributeClick(
       attribute, value
     );
   }
-
 
   render() {
     const maxValue = this.props.attributeMaxValue;
@@ -67,9 +63,7 @@ class AttributesPanel extends React.Component {
                 max={maxValue}
                 value={strength.value}
                 data-qa="levelPicker"
-                onLevelClick={value => this.onLevelClick(
-                  'strength', value
-                )}
+                onLevelClick={value => this.onLevelClick('strength', value)}
               />
             </LevelContainer>
           </AttributeContainer>
@@ -80,9 +74,8 @@ class AttributesPanel extends React.Component {
                 max={maxValue}
                 value={dexterity.value}
                 data-qa="levelPicker"
-                onLevelClick={value => this.onLevelClick(
-                  'dexterity', value
-                )}/>
+                onLevelClick={value => this.onLevelClick('dexterity', value)}
+              />
             </LevelContainer>
           </AttributeContainer>
           <AttributeContainer>
@@ -92,9 +85,8 @@ class AttributesPanel extends React.Component {
                 max={maxValue}
                 value={stamina.value}
                 data-qa="levelPicker"
-                onLevelClick={value => this.onLevelClick(
-                  'stamina', value
-                )}/>
+                onLevelClick={value => this.onLevelClick('stamina', value)}
+              />
             </LevelContainer>
           </AttributeContainer>
         </GroupContainer>
@@ -106,9 +98,8 @@ class AttributesPanel extends React.Component {
                 max={maxValue}
                 value={presence.value}
                 data-qa="levelPicker"
-                onLevelClick={value => this.onLevelClick(
-                  'presence', value
-                )}/>
+                onLevelClick={value => this.onLevelClick('presence', value)}
+              />
             </LevelContainer>
           </AttributeContainer>
           <AttributeContainer>
@@ -118,9 +109,8 @@ class AttributesPanel extends React.Component {
                 max={maxValue}
                 value={manipulation.value}
                 data-qa="levelPicker"
-                onLevelClick={value => this.onLevelClick(
-                  'manipulation', value
-                )}/>
+                onLevelClick={value => this.onLevelClick('manipulation', value)}
+              />
             </LevelContainer>
           </AttributeContainer>
           <AttributeContainer>
@@ -130,9 +120,8 @@ class AttributesPanel extends React.Component {
                 max={maxValue}
                 value={composure.value}
                 data-qa="levelPicker"
-                onLevelClick={value => this.onLevelClick(
-                  'composure', value
-                )}/>
+                onLevelClick={value => this.onLevelClick('composure', value)}
+              />
             </LevelContainer>
           </AttributeContainer>
         </GroupContainer>
@@ -144,9 +133,8 @@ class AttributesPanel extends React.Component {
                 max={maxValue}
                 value={intelligence.value}
                 data-qa="levelPicker"
-                onLevelClick={value => this.onLevelClick(
-                  'intelligence', value
-                )}/>
+                onLevelClick={value => this.onLevelClick('intelligence', value)}
+              />
             </LevelContainer>
           </AttributeContainer>
           <AttributeContainer>
@@ -156,9 +144,8 @@ class AttributesPanel extends React.Component {
                 max={maxValue}
                 value={wits.value}
                 data-qa="levelPicker"
-                onLevelClick={value => this.onLevelClick(
-                  'wits', value
-                )}/>
+                onLevelClick={value => this.onLevelClick('wits', value)}
+              />
             </LevelContainer>
           </AttributeContainer>
           <AttributeContainer>
@@ -168,9 +155,8 @@ class AttributesPanel extends React.Component {
                 max={maxValue}
                 value={resolve.value}
                 data-qa="levelPicker"
-                onLevelClick={value => this.onLevelClick(
-                  'resolve', value
-                )}/>
+                onLevelClick={value => this.onLevelClick('resolve', value)}
+              />
             </LevelContainer>
           </AttributeContainer>
         </GroupContainer>

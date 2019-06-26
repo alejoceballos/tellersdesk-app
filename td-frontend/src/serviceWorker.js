@@ -65,18 +65,16 @@ function registerValidSW(
     });
 }
 
-function checkValidServiceWorker(
-  swUrl, config
-) {
+function checkValidServiceWorker(swUrl, config) {
   // Check if the service worker can be found. If it can't reload the page.
   fetch(swUrl)
     .then(response => {
       // Ensure service worker exists, and that we really are getting a JS file.
       const contentType = response.headers.get('content-type');
-      if (
-        response.status === HTTP_NOT_FOUND ||
-        contentType !== null && contentType.indexOf('javascript') === INDEX_NOT_FOUND
-      ) {
+      const httpNotFound = response.status === HTTP_NOT_FOUND;
+      const contentTypeNotFound = contentType !== null && contentType.indexOf('javascript') === INDEX_NOT_FOUND;
+
+      if (httpNotFound || contentTypeNotFound) {
         // No service worker found. Probably a different app. Reload the page.
         navigator.serviceWorker.ready.then(registration => {
           registration.unregister().then(() => {
@@ -116,30 +114,27 @@ export function register(config) {
       return;
     }
 
-    window.addEventListener(
-      'load', () => {
-        const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+    window.addEventListener('load', () => {
+      const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
 
-        if (isLocalhost) {
-          // This is running on localhost. Let's check if a service worker still exists or not.
-          checkValidServiceWorker(
-            swUrl, config
-          );
+      if (isLocalhost) {
+        // This is running on localhost. Let's check if a service worker still exists or not.
+        checkValidServiceWorker(
+          swUrl, config
+        );
 
-          // Add some additional logging to localhost, pointing developers to the
-          // service worker/PWA documentation.
-          navigator.serviceWorker.ready.then(() => {
-            console.log('This web app is being served cache-first by a service ' +
+        // Add some additional logging to localhost, pointing developers to the
+        // service worker/PWA documentation.
+        navigator.serviceWorker.ready.then(() => {
+          console.log('This web app is being served cache-first by a service ' +
               'worker. To learn more, visit https://bit.ly/CRA-PWA');
-          });
-        } else {
-          // Is not localhost. Just register service worker
-          registerValidSW(
-            swUrl, config
-          );
-        }
+        });
+      } else {
+        // Is not localhost. Just register service worker
+        registerValidSW(
+          swUrl, config
+        );
       }
-    );
+    });
   }
 }
-
