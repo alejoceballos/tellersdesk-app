@@ -20,7 +20,7 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
-    'plugin:import/recommended',
+    // 'plugin:import/recommended',
     'standard',
     'standard-react',
     'react-app'

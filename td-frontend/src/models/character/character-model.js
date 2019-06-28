@@ -1,4 +1,5 @@
 import AttributeGroup from './attribute-group-model';
+import { isFunction } from '../../utils/utils';
 
 class Character {
   attributes = {};
@@ -13,10 +14,8 @@ class Character {
   }
 
   onAttributeChange(name, value) {
-    if (this.onCharacterChange instanceof Function) {
-      this.onCharacterChange(
-        'attribute', name, value
-      );
+    if (isFunction(this.onCharacterChange)) {
+      this.onCharacterChange('attribute', name, value);
     }
   }
 }
