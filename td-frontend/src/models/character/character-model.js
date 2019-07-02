@@ -4,7 +4,8 @@ import { isFunction } from '../../utils/utils';
 class Character {
   attributes = {};
 
-  constructor({ onCharacterChange, attributeMaxValue }) {
+  constructor({ id, onCharacterChange, attributeMaxValue }) {
+    this.id = id;
     this.onCharacterChange = onCharacterChange;
 
     this.attributes = new AttributeGroup({
@@ -15,7 +16,7 @@ class Character {
 
   onAttributeChange(name, value) {
     if (isFunction(this.onCharacterChange)) {
-      this.onCharacterChange('attribute', name, value);
+      this.onCharacterChange(this.id, 'attribute', name, value);
     }
   }
 }

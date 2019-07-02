@@ -11,7 +11,7 @@ describe('Character Model', function () {
     const character = new Character({ onCharacterChange });
     character.attributes.strength.value = 1;
 
-    expect(onCharacterChange).toBeCalledWith('attribute', 'strength', 1);
+    expect(onCharacterChange).toBeCalledWith(undefined, 'attribute', 'strength', 1);
   });
 
   it('should NOT run callback when level value is left unchanged', () => {

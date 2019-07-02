@@ -7,8 +7,7 @@ describe('Render', () => {
     const wrapper = shallow(<LevelPicker max={0} value={0} />);
 
     expect(wrapper.isEmptyRender()).toBeFalsy();
-  }
-  );
+  });
 
   it('should render levels according its values', () => {
     const max = 5;
@@ -17,8 +16,7 @@ describe('Render', () => {
 
     expect(wrapper.find({ 'data-qa': 'level-picker-yes' })).toHaveLength(level);
     expect(wrapper.find({ 'data-qa': 'level-picker-no' })).toHaveLength(max - level);
-  }
-  );
+  });
 
   it('should call callback on click', () => {
     const max = 5;
@@ -31,7 +29,5 @@ describe('Render', () => {
     wrapper.find('[data-qa="level-picker-no"]').first().simulate('click');
 
     expect(doSomethingOnCLick).toHaveBeenCalledWith(level4);
-  }
-  );
-}
-);
+  });
+});

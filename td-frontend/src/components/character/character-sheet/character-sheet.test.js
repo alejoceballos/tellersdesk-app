@@ -13,9 +13,9 @@ describe('Render', () => {
     expect(wrapper.isEmptyRender()).toBeFalsy();
   });
 
-  it('should render attributes panel', () => {
+  it('should render one attributes panel', () => {
     const attrPanelAmount = 1;
 
-    expect(wrapper.find({ 'data-qa': 'attributesPanel' })).toHaveLength(attrPanelAmount);
+    expect(wrapper.find({ 'data-qa': 'attributes-panel' })).toHaveLength(attrPanelAmount);
   });
 });

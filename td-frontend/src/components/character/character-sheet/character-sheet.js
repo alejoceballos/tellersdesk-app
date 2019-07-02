@@ -1,33 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import BorderedStyle from '../../bordered-style';
 import AttributesPanel from './attributes-panel';
 
 const Container = styled(BorderedStyle)``;
 
-class CharacterSheet extends React.Component {
-  onAttributeClick(attribute, value) {
-    this.props.onAttributeClick(
+const CharacterSheet = props => {
+  const onAttributeClick = (attribute, value) => {
+    props.onAttributeClick(
       attribute, value
     );
-  }
+  };
 
-  render() {
-    const { attributes } = this.props.character;
+  const { attributes } = props.character;
 
-    return (
-      <Container>
-        <AttributesPanel
-          data-qa="attributesPanel"
-          attributeMaxValue={attributes.attributeMaxValue}
-          attributes={attributes}
-          onAttributeClick={(attribute, value) => this.onAttributeClick(attribute, value)}
-        />
-      </Container>
-    );
-  }
-}
+  return (
+    <Container>
+      <AttributesPanel
+        data-qa="attributes-panel"
+        attributeMaxValue={attributes.attributeMaxValue}
+        attributes={attributes}
+        onAttributeClick={(attribute, value) => onAttributeClick(attribute, value)}
+      />
+    </Container>
+  );
+};
 
 CharacterSheet.propTypes = {
   character: PropTypes.object.isRequired,
