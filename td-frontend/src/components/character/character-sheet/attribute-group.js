@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 import BorderedStyle from '../../bordered-style';
 import LevelPicker from './level-picker';
+import { reduce } from 'lodash';
 
 const GroupContainer = styled(BorderedStyle)`
   display: flex;
@@ -26,6 +27,11 @@ const LevelContainer = styled(BorderedStyle)`
   text-align: right;
 `;
 
+const TotalContainer = styled(BorderedStyle)`
+  text-align: right;
+  padding-right: 1rem;
+`;
+
 const AttributeGroup = (props) => {
   const onLevelClick = (attribute, value) =>
     props.onAttributeClick(
@@ -46,9 +52,14 @@ const AttributeGroup = (props) => {
     </AttributeContainer>
   );
 
+  const attributesTotal = reduce(props.group, (accumulator, attribute) => accumulator + attribute.value, 0);
+
   return (
     <GroupContainer>
       {attributesContainers}
+      <TotalContainer data-qa="attributes-total">
+        {`Total: ${attributesTotal}`}
+      </TotalContainer>
     </GroupContainer>
   );
 };

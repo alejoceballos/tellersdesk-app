@@ -12,12 +12,8 @@ class LevelPicker extends React.Component {
   }
 
   render() {
-    const {
-      value,
-      max
-    } = this.props;
-
     const INCREMENT = 1;
+    const { value, max } = this.props;
 
     const levels = map(
       new Array(max), (item, index) => {

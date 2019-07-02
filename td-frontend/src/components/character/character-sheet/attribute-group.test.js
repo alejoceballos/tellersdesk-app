@@ -29,4 +29,8 @@ describe('Attribute Group', () => {
   it('should render three level pickers', () => {
     expect(wrapper.find({ 'data-qa': 'level-picker' })).toHaveLength(group.length);
   });
+
+  it('should render total attributes', () => {
+    expect(wrapper.find({ 'data-qa': 'attributes-total' }).text()).toEqual('Total: 6');
+  });
 });
