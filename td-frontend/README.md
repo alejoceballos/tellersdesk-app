@@ -1,5 +1,38 @@
 # Tellers' Desk Frontend
 
+## Basic Character Creation
+
+- [ ] Create Character Sheet
+  - [ ] Create Attributes Section
+    - [X] Create Level Picker
+    - [X] Create Attributes Group
+    - [ ] Apply "5/4/3" points rule on creation
+  - [ ] Create Skills Section
+    - [ ] Create Mental Skills Section
+    - [ ] Create Mental Physical Section
+    - [ ] Create Mental Social Section
+    - [ ] Apply "11/7/4 points" rule on creation
+  - [ ] Create Merits Section
+    - [ ] Apply "7 points" rule on creation
+  - [ ] Apply "5th point costs 2 points" rule on creation for previous sections
+  - [ ] Create Health Section
+    - [ ] Create Box Selector
+    - [ ] Apply Health rule on creation (Stamina + Size)
+  - [ ] Create Willpower Section
+    - [ ] Apply "Resolve + Composure" rule on creation
+  - [ ] Create Morality Section
+    - [ ] apply "Starting Morality = 7" rule
+  - [ ] Apply Size rule (5 for adult human)
+  - [ ] Apply Speed rule (Strength + Dexterity +5)
+  - [ ] Apply Defense rule (Lowest of Dexterity or Wits)
+  - [ ] Apply Initiative Mod rule (Dexterity +Composure)
+
+## Character Combat
+
+TBD
+
+## Technicalities
+
 ### Creating the application
 
 References:

@@ -10,6 +10,8 @@ const AttributesContainer = styled(BorderedStyle)`
 `;
 
 const AttributesPanel = (props) => {
+  console.log('=> AttributesPanel');
+
   const onLevelClick = (attribute, value) => {
     props.onAttributeClick(
       attribute, value

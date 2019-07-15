@@ -33,6 +33,8 @@ const TotalContainer = styled(BorderedStyle)`
 `;
 
 const AttributeGroup = (props) => {
+  console.log('=> AttributeGroup');
+
   const onLevelClick = (attribute, value) =>
     props.onAttributeClick(
       attribute, value
