@@ -21,7 +21,7 @@ const CharacterSheet = props => {
     <Container>
       <AttributesPanel
         data-qa="attributes-panel"
-        attributeMaxValue={attributes.attributeMaxValue}
+        attributeMaxValue={attributes.featureMaxValue}
         attributes={attributes}
         onAttributeClick={(attribute, value) => onAttributeClick(attribute, value)}
       />

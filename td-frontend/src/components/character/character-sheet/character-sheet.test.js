@@ -4,7 +4,7 @@ import CharacterSheet from './character-sheet';
 
 describe('Render', () => {
   const character = {
-    attributes: { attributeMaxValue: 0 }
+    attributes: { featureMaxValue: 0 }
   };
 
   const wrapper = shallow(<CharacterSheet character={character} />);

@@ -1,16 +1,27 @@
-import AttributeGroup from './attribute-group-model';
+import CharacterFeatureGroup from './character-feature-group-model';
 import { isFunction } from '../../utils/utils';
 
 class Character {
   attributes = {};
 
-  constructor({ id, onCharacterChange, attributeMaxValue }) {
+  constructor({ id, onCharacterChange, featureMaxValue }) {
     this.id = id;
     this.onCharacterChange = onCharacterChange;
 
-    this.attributes = new AttributeGroup({
-      onAttributeChange: (name, value) => this.onAttributeChange(name, value),
-      attributeMaxValue
+    this.attributes = new CharacterFeatureGroup({
+      onFeatureChange: (name, value) => this.onAttributeChange(name, value),
+      featureMaxValue,
+      featuresNames: [
+        'strength',
+        'dexterity',
+        'stamina',
+        'presence',
+        'manipulation',
+        'composure',
+        'intelligence',
+        'wits',
+        'resolve'
+      ]
     });
   }
 

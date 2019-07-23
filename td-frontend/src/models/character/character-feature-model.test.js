@@ -1,34 +1,34 @@
-import Attribute from './attribute-model';
+import CharacterFeature from './character-feature-model';
 
-describe('Attribute Model', function () {
+describe('CharacterFeature Model', function () {
   const onLevelChange = jest.fn();
 
   beforeEach(() => {
     onLevelChange.mockReset();
   });
 
-  it('should set all attributes', () => {
+  it('should set all features', () => {
     const argument = {
       onLevelChange,
       value: 1,
-      attributeMaxValue: 2,
+      featureMaxValue: 2,
       name: 'name'
     };
 
     const expected = {
       onLevelChange,
-      attributeMaxValue: argument.attributeMaxValue,
+      featureMaxValue: argument.featureMaxValue,
       name: argument.name,
       _value: argument.value
     };
 
-    const attr = new Attribute(argument);
+    const attr = new CharacterFeature(argument);
 
     expect({ ...attr }).toEqual({ ...expected });
   });
 
   it('should run callback when changing level value', () => {
-    const attr = new Attribute({ onLevelChange });
+    const attr = new CharacterFeature({ onLevelChange });
 
     attr.value = 1;
 
@@ -36,10 +36,10 @@ describe('Attribute Model', function () {
   });
 
   it('should NOT run callback when level value is left unchanged', () => {
-    const attr = new Attribute({
+    const attr = new CharacterFeature({
       onLevelChange,
       value: 5,
-      attributeMaxValue: 5
+      featureMaxValue: 5
     });
 
     attr.value = 5;
@@ -48,14 +48,14 @@ describe('Attribute Model', function () {
   });
 
   it('should not set a value greater than the maximum allowed', () => {
-    const attr = new Attribute({
+    const attr = new CharacterFeature({
       onLevelChange,
       value: 0,
-      attributeMaxValue: 5
+      featureMaxValue: 5
     });
 
     attr.value = 6;
 
-    expect(attr.value).toEqual(attr.attributeMaxValue);
+    expect(attr.value).toEqual(attr.featureMaxValue);
   });
 });

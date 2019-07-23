@@ -1,10 +1,10 @@
 import { isFunction } from '../../utils/utils';
 
-class Attribute {
-  constructor({ onLevelChange, value, name, attributeMaxValue }) {
+class CharacterFeature {
+  constructor({ onLevelChange, value, name, featureMaxValue }) {
     this.onLevelChange = onLevelChange;
     this.name = name;
-    this.attributeMaxValue = attributeMaxValue;
+    this.featureMaxValue = featureMaxValue;
     this._value = value;
   }
 
@@ -14,7 +14,7 @@ class Attribute {
 
   set value(val) {
     const previousValue = this._value;
-    this._value = val > this.attributeMaxValue ? this.attributeMaxValue : val;
+    this._value = val > this.featureMaxValue ? this.featureMaxValue : val;
 
     if (isFunction(this.onLevelChange) && previousValue !== this._value) {
       this.onLevelChange(
@@ -24,4 +24,4 @@ class Attribute {
   }
 }
 
-export default Attribute;
+export default CharacterFeature;
