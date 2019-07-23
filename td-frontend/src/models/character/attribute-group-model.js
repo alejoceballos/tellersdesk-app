@@ -4,6 +4,18 @@ import { isFunction } from '../../utils/utils';
 class AttributeGroup {
   attributeMaxValue = AttributeGroup.DEFAULT.MAX_VALUE;
 
+  attributesNames = [
+    'strength',
+    'dexterity',
+    'stamina',
+    'presence',
+    'manipulation',
+    'composure',
+    'intelligence',
+    'wits',
+    'resolve'
+  ];
+
   constructor({ onAttributeChange, attributeMaxValue }) {
     this.onAttributeChange = onAttributeChange;
 
@@ -11,66 +23,13 @@ class AttributeGroup {
       this.attributeMaxValue = attributeMaxValue;
     }
 
-    this.strength = new Attribute({
-      name: 'strength',
-      value: 0,
-      onLevelChange: (name, value) => this.onLevelChange(name, value),
-      attributeMaxValue: this.attributeMaxValue
-    });
-
-    this.dexterity = new Attribute({
-      name: 'dexterity',
-      value: 0,
-      onLevelChange: (name, value) => this.onLevelChange(name, value),
-      attributeMaxValue: this.attributeMaxValue
-    });
-
-    this.stamina = new Attribute({
-      name: 'stamina',
-      value: 0,
-      onLevelChange: (name, value) => this.onLevelChange(name, value),
-      attributeMaxValue: this.attributeMaxValue
-    });
-
-    this.presence = new Attribute({
-      name: 'presence',
-      value: 0,
-      onLevelChange: (name, value) => this.onLevelChange(name, value),
-      attributeMaxValue: this.attributeMaxValue
-    });
-
-    this.manipulation = new Attribute({
-      name: 'manipulation',
-      value: 0,
-      onLevelChange: (name, value) => this.onLevelChange(name, value),
-      attributeMaxValue: this.attributeMaxValue
-    });
-
-    this.composure = new Attribute({
-      name: 'composure',
-      value: 0,
-      onLevelChange: (name, value) => this.onLevelChange(name, value),
-      attributeMaxValue: this.attributeMaxValue
-    });
-
-    this.intelligence = new Attribute({
-      name: 'intelligence',
-      value: 0,
-      onLevelChange: (name, value) => this.onLevelChange(name, value),
-      attributeMaxValue: this.attributeMaxValue
-    });
-
-    this.wits = new Attribute({
-      name: 'wits',
-      value: 0,
-      onLevelChange: (name, value) => this.onLevelChange(name, value),
-      attributeMaxValue: this.attributeMaxValue
-    });
-
-    this.resolve = new Attribute({
-      name: 'resolve',
-      value: 0,
-      onLevelChange: (name, value) => this.onLevelChange(name, value),
+    this.attributesNames.forEach(name => {
+      this[name] = new Attribute({
+        name: name,
+        value: 0,
+        onLevelChange: (name, value) => this.onLevelChange(name, value),
+        attributeMaxValue: this.attributeMaxValue
+      });
     });
   }
 

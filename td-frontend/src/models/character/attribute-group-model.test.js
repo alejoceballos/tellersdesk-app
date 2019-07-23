@@ -5,7 +5,7 @@ import Attribute from './attribute-model';
 describe('Attribute Group', function () {
   const attributeMaxValue = 4;
 
-  const attributesName = [
+  const attributesNames = [
     'strength',
     'dexterity',
     'stamina',
@@ -33,7 +33,7 @@ describe('Attribute Group', function () {
 
     const groupAttributesNames = map(groupAttributes, 'name');
 
-    expect(groupAttributesNames).toEqual(attributesName);
+    expect(groupAttributesNames).toEqual(attributesNames);
   });
 
   it('should set attribute maximum value to default', function () {
@@ -48,7 +48,7 @@ describe('Attribute Group', function () {
     const groupAttributes = filterCollection(collection);
 
     const groupAttributesValues = map(groupAttributes, 'value');
-    const expected = fill(new Array(attributesName.length), 0);
+    const expected = fill(new Array(attributesNames.length), 0);
 
     expect(groupAttributesValues).toEqual(expect.arrayContaining(expected));
   });
@@ -59,7 +59,7 @@ describe('Attribute Group', function () {
     const groupAttributes = filterCollection(collection);
 
     const groupAttributesValues = map(groupAttributes, 'attributeMaxValue');
-    const expected = fill(new Array(attributesName.length), AttributeGroup.DEFAULT.MAX_VALUE);
+    const expected = fill(new Array(attributesNames.length), AttributeGroup.DEFAULT.MAX_VALUE);
 
     expect(groupAttributesValues).toEqual(expect.arrayContaining(expected));
   });
@@ -70,7 +70,7 @@ describe('Attribute Group', function () {
     const groupAttributes = filterCollection(collection);
 
     const groupAttributesValues = map(groupAttributes, 'attributeMaxValue');
-    const expected = fill(new Array(attributesName.length), attributeMaxValue);
+    const expected = fill(new Array(attributesNames.length), attributeMaxValue);
 
     expect(groupAttributesValues).toEqual(expect.arrayContaining(expected));
   });
@@ -83,7 +83,7 @@ describe('Attribute Group', function () {
     const collection = Object.values({ ...attrGroup });
     const groupAttributes = filterCollection(collection);
 
-    const expected = map(attributesName, name => ({ name, value: attributeMaxValue }));
+    const expected = map(attributesNames, name => ({ name, value: attributeMaxValue }));
 
     groupAttributes.forEach(attr => { attr.value = attributeMaxValue; });
 
