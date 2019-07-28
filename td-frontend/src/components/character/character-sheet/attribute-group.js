@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 import BorderedStyle from '../../bordered-style';
 import LevelPicker from './level-picker';
-import { reduce } from 'lodash';
+import { reduce, isEqual } from 'lodash';
 
 const GroupContainer = styled(BorderedStyle)`
   display: flex;
@@ -76,4 +76,8 @@ AttributeGroup.propTypes = {
   onAttributeClick: PropTypes.func.isRequired
 };
 
-export default AttributeGroup;
+const areEqual = (prevProps, nextProps) => isEqual(prevProps.group, nextProps.group);
+
+const AttributeGroupMemo = memo(AttributeGroup, areEqual);
+
+export default AttributeGroupMemo;

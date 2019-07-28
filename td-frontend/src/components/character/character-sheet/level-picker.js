@@ -42,9 +42,8 @@ LevelPicker.propTypes = {
   onLevelClick: PropTypes.func
 };
 
-const areEqual = (prevProps, nextProps) => {
-  return nextProps.value === prevProps.value && nextProps.max === prevProps.max;
-};
+const areEqual = (prevProps, nextProps) =>
+  nextProps.value === prevProps.value && nextProps.max === prevProps.max;
 
 const LevelPickerMemo = memo(LevelPicker, areEqual);
 
