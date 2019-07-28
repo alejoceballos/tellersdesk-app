@@ -28,9 +28,14 @@ describe('Render', () => {
     expect(wrapper.isEmptyRender()).toBeFalsy();
   });
 
-  it('should render level picker', () => {
-    const attributeGroupsAmount = 3;
+  it('should render attributes title', () => {
+    const attributesTitle = wrapper.find({ 'data-qa': 'attribute-title' });
+    expect(attributesTitle).toHaveLength(1);
+    expect(attributesTitle.text()).toEqual('Attributes');
+  });
 
-    expect(wrapper.find({ 'data-qa': 'attribute-group' })).toHaveLength(attributeGroupsAmount);
+  it('should render attribute group', () => {
+    const attributesGroups = wrapper.find({ 'data-qa': 'attribute-group' });
+    expect(attributesGroups).toHaveLength(3);
   });
 });

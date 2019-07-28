@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 import BorderedStyle from '../../bordered-style';
 import LevelPicker from './level-picker';
+import { titleCase } from 'voca';
 import { reduce, isEqual } from 'lodash';
 
 const GroupContainer = styled(BorderedStyle)`
@@ -42,7 +43,7 @@ const AttributeGroup = (props) => {
 
   const attributesContainers = props.group.map(attribute =>
     <AttributeContainer key={attribute.name}>
-      <NameContainer>{attribute.name}</NameContainer>
+      <NameContainer data-qa="attribute-name">{titleCase(attribute.name)}</NameContainer>
       <LevelContainer>
         <LevelPicker
           max={props.maxValue}

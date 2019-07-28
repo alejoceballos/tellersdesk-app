@@ -4,6 +4,10 @@ import styled from 'styled-components/macro';
 import BorderedStyle from '../../bordered-style';
 import AttributeGroup from './attribute-group';
 
+const AttributesHeader = styled(BorderedStyle)`
+  font-weight: bold;
+`;
+
 const AttributesContainer = styled(BorderedStyle)`
   display: flex;
   flex-wrap: nowrap;
@@ -60,7 +64,12 @@ const AttributesPanel = (props) => {
     />
   );
 
-  return <AttributesContainer>{attributesGroups}</AttributesContainer>;
+  return (
+    <>
+      <AttributesHeader data-qa="attribute-title">Attributes</AttributesHeader>
+      <AttributesContainer>{attributesGroups}</AttributesContainer>
+    </>
+  );
 };
 
 AttributesPanel.propTypes = {
