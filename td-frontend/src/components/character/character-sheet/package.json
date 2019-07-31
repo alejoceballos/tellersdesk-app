@@ -1,0 +1,6 @@
+{
+  "name": "character-sheet",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./character-sheet.js"
+}

@@ -38,6 +38,11 @@ const AttributesPanel = (props) => {
 
   const groups = [
     [
+      { name: 'intelligence', value: intelligence.value },
+      { name: 'wits', value: wits.value },
+      { name: 'resolve', value: resolve.value }
+    ],
+    [
       { name: 'strength', value: strength.value },
       { name: 'dexterity', value: dexterity.value },
       { name: 'stamina', value: stamina.value }
@@ -46,11 +51,6 @@ const AttributesPanel = (props) => {
       { name: 'presence', value: presence.value },
       { name: 'manipulation', value: manipulation.value },
       { name: 'composure', value: composure.value }
-    ],
-    [
-      { name: 'intelligence', value: intelligence.value },
-      { name: 'wits', value: wits.value },
-      { name: 'resolve', value: resolve.value }
     ]
   ];
 
