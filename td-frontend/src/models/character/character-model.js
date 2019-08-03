@@ -1,27 +1,51 @@
 import CharacterFeatureGroup from './character-feature-group-model';
 import { isFunction } from '../../utils/utils';
+import { includes, reduce } from 'lodash';
+
+const PHYSICAL = [
+  'strength',
+  'dexterity',
+  'stamina'
+];
+
+const SOCIAL = [
+  'presence',
+  'manipulation',
+  'composure'
+];
+
+const MENTAL = [
+  'intelligence',
+  'wits',
+  'resolve'
+];
+
+const ATTRIBUTES = [
+  ...PHYSICAL,
+  ...SOCIAL,
+  ...MENTAL
+];
 
 class Character {
   attributes = {};
 
-  constructor({ id, onCharacterChange, featureMaxValue }) {
+  constructor(
+    {
+      id,
+      onCharacterChange,
+      featureMaxValue
+    } = {
+      id: undefined,
+      onCharacterChange: () => {},
+      featureMaxValue: 5
+    }) {
     this.id = id;
     this.onCharacterChange = onCharacterChange;
 
     this.attributes = new CharacterFeatureGroup({
       onFeatureChange: (name, value) => this.onAttributeChange(name, value),
       featureMaxValue,
-      featuresNames: [
-        'strength',
-        'dexterity',
-        'stamina',
-        'presence',
-        'manipulation',
-        'composure',
-        'intelligence',
-        'wits',
-        'resolve'
-      ]
+      featuresNames: ATTRIBUTES
     });
   }
 
@@ -30,6 +54,28 @@ class Character {
       this.onCharacterChange(this.id, 'attribute', name, value);
     }
   }
+
+  getAttributesGroupTotal = group => reduce(
+    Character.getAttributesByGroup(group),
+    (accumulator, attribute) => {
+      return accumulator + this.attributes[attribute].value;
+    },
+    0
+  );
+
+  static getGroupByAttribute = attribute =>
+    includes(PHYSICAL, attribute) ? 'physical'
+      : includes(SOCIAL, attribute) ? 'social'
+        : includes(MENTAL, attribute) ? 'mental'
+          : undefined;
+
+  static getAttributesByGroup = group =>
+    group === 'physical' ? PHYSICAL
+      : group === 'social' ? SOCIAL
+        : group === 'mental' ? MENTAL
+          : undefined;
 }
+
+export { ATTRIBUTES, SOCIAL, MENTAL, PHYSICAL };
 
 export default Character;
