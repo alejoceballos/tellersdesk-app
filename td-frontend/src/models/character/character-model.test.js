@@ -26,81 +26,81 @@ describe('Character Model', function () {
   });
 
   describe('Attributes', () => {
-    describe('Get Group By Attribute', () => {
+    describe('Get Group Name By Attribute', () => {
       it('should have strength attribute in physical group', () => {
-        const attributeGroupName = Character.getGroupByAttribute('strength');
+        const attributeGroupName = Character.getGroupNameByAttribute('strength');
         expect(attributeGroupName).toEqual('physical');
       });
 
       it('should have dexterity attribute in physical group', () => {
-        const attributeGroupName = Character.getGroupByAttribute('dexterity');
+        const attributeGroupName = Character.getGroupNameByAttribute('dexterity');
         expect(attributeGroupName).toEqual('physical');
       });
 
       it('should have stamina attribute in physical group', () => {
-        const attributeGroupName = Character.getGroupByAttribute('stamina');
+        const attributeGroupName = Character.getGroupNameByAttribute('stamina');
         expect(attributeGroupName).toEqual('physical');
       });
 
       it('should have presence attribute in social group', () => {
-        const attributeGroupName = Character.getGroupByAttribute('presence');
+        const attributeGroupName = Character.getGroupNameByAttribute('presence');
         expect(attributeGroupName).toEqual('social');
       });
 
       it('should have manipulation attribute in social group', () => {
-        const attributeGroupName = Character.getGroupByAttribute('manipulation');
+        const attributeGroupName = Character.getGroupNameByAttribute('manipulation');
         expect(attributeGroupName).toEqual('social');
       });
 
       it('should have composure attribute in social group', () => {
-        const attributeGroupName = Character.getGroupByAttribute('composure');
+        const attributeGroupName = Character.getGroupNameByAttribute('composure');
         expect(attributeGroupName).toEqual('social');
       });
 
       it('should have intelligence attribute in mental group', () => {
-        const attributeGroupName = Character.getGroupByAttribute('intelligence');
+        const attributeGroupName = Character.getGroupNameByAttribute('intelligence');
         expect(attributeGroupName).toEqual('mental');
       });
 
       it('should have wits attribute in mental group', () => {
-        const attributeGroupName = Character.getGroupByAttribute('wits');
+        const attributeGroupName = Character.getGroupNameByAttribute('wits');
         expect(attributeGroupName).toEqual('mental');
       });
 
       it('should have resolve attribute in mental group', () => {
-        const attributeGroupName = Character.getGroupByAttribute('resolve');
+        const attributeGroupName = Character.getGroupNameByAttribute('resolve');
         expect(attributeGroupName).toEqual('mental');
       });
 
       it('should not have a group for invalid attribute', () => {
-        const attributeGroupName = Character.getGroupByAttribute('invalid');
+        const attributeGroupName = Character.getGroupNameByAttribute('invalid');
         expect(attributeGroupName).toBeUndefined();
       });
     });
 
-    describe('Get Attributes By Group', () => {
+    describe('Get Attributes Names By Group', () => {
       it('should not have attributes for invalid group', () => {
-        const attributes = Character.getAttributesByGroup('invalid');
+        const attributes = Character.getAttributesNamesByGroup('invalid');
         expect(attributes).toBeFalsy();
       });
 
       it('should have attributes for physical group', () => {
-        const attributes = Character.getAttributesByGroup('physical');
+        const attributes = Character.getAttributesNamesByGroup('physical');
         expect(attributes).toEqual(PHYSICAL);
       });
 
       it('should have attributes for social group', () => {
-        const attributes = Character.getAttributesByGroup('social');
+        const attributes = Character.getAttributesNamesByGroup('social');
         expect(attributes).toEqual(SOCIAL);
       });
 
       it('should have attributes for mental group', () => {
-        const attributes = Character.getAttributesByGroup('mental');
+        const attributes = Character.getAttributesNamesByGroup('mental');
         expect(attributes).toEqual(MENTAL);
       });
     });
 
-    describe('Get Attributes Group Total', () => {
+    describe('Get Attributes Total By Group', () => {
       const character = new Character({ featureMaxValue: 8 });
 
       forEach(ATTRIBUTES,
@@ -109,23 +109,23 @@ describe('Character Model', function () {
         }
       );
 
-      it('should be 0 the total of attributes for an invalid group', () => {
-        const total = character.getAttributesGroupTotal('invalid');
+      it('should be 0 the total for attributes for an invalid group', () => {
+        const total = character.getAttributesTotalByGroup('invalid');
         expect(total).toEqual(0);
       });
 
-      it('should be 3 the total of physical attributes', () => {
-        const total = character.getAttributesGroupTotal('physical');
+      it('should be 3 the total for physical attributes', () => {
+        const total = character.getAttributesTotalByGroup('physical');
         expect(total).toEqual(3);
       });
 
-      it('should be 12 the total of social attributes', () => {
-        const total = character.getAttributesGroupTotal('social');
+      it('should be 12 the total for social attributes', () => {
+        const total = character.getAttributesTotalByGroup('social');
         expect(total).toEqual(12);
       });
 
-      it('should be 21 the total of mental attributes', () => {
-        const total = character.getAttributesGroupTotal('mental');
+      it('should be 21 the total for mental attributes', () => {
+        const total = character.getAttributesTotalByGroup('mental');
         expect(total).toEqual(21);
       });
     });

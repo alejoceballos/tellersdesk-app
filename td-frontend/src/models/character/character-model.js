@@ -55,21 +55,21 @@ class Character {
     }
   }
 
-  getAttributesGroupTotal = group => reduce(
-    Character.getAttributesByGroup(group),
+  getAttributesTotalByGroup = group => reduce(
+    Character.getAttributesNamesByGroup(group),
     (accumulator, attribute) => {
       return accumulator + this.attributes[attribute].value;
     },
     0
   );
 
-  static getGroupByAttribute = attribute =>
+  static getGroupNameByAttribute = attribute =>
     includes(PHYSICAL, attribute) ? 'physical'
       : includes(SOCIAL, attribute) ? 'social'
         : includes(MENTAL, attribute) ? 'mental'
           : undefined;
 
-  static getAttributesByGroup = group =>
+  static getAttributesNamesByGroup = group =>
     group === 'physical' ? PHYSICAL
       : group === 'social' ? SOCIAL
         : group === 'mental' ? MENTAL

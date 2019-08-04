@@ -1,22 +1,15 @@
 import { create, canUpdate } from './character.service';
-import Character from '../models/character/character-model';
+import Character, { ATTRIBUTES, SOCIAL } from '../models/character/character-model';
+import { forEach } from 'lodash';
 
 describe('Character Service', () => {
-  const MAX_DEFAULT_SOCIAL_LIMIT = 3;
-  const MAX_SOCIAL_LIMIT = 5;
-  const groupsLimits = {
-    mental: 3,
-    physical: 7,
-    social: MAX_SOCIAL_LIMIT
-  };
-
   let subject;
 
-  beforeEach(() => {
-    subject = create();
-  });
-
   describe('Create', () => {
+    beforeEach(() => {
+      subject = create();
+    });
+
     it('should create a brand new character', () => {
       expect(subject instanceof Character).toBeTruthy();
       expect(subject.id).toBeUndefined();
@@ -24,10 +17,35 @@ describe('Character Service', () => {
   });
 
   describe('Can Update', () => {
+    const groupsLimits = {
+      mental: 3,
+      physical: 7,
+      social: 5
+    };
+
+    beforeEach(() => {
+      subject = new Character();
+
+      forEach(SOCIAL, (attribute, index) => {
+        subject.attributes[attribute].value = index;
+      });
+    });
+
+    it('should not allow update an unknown attribute', () => {
+      const update = {
+        attribute: 'whatever',
+        value: 0
+      };
+
+      const received = canUpdate(subject, update);
+
+      expect(received).toBeFalsy();
+    });
+
     it('should not allow update attribute beyond its maximum default group type limit', () => {
       const update = {
         attribute: 'presence',
-        value: MAX_DEFAULT_SOCIAL_LIMIT + 1
+        value: 1
       };
 
       const received = canUpdate(subject, update);
@@ -38,7 +56,7 @@ describe('Character Service', () => {
     it('should not allow update attribute beyond its maximum group type limit', () => {
       const update = {
         attribute: 'presence',
-        value: MAX_SOCIAL_LIMIT + 1
+        value: 3
       };
 
       const received = canUpdate(subject, update, groupsLimits);
@@ -46,26 +64,26 @@ describe('Character Service', () => {
       expect(received).toBeFalsy();
     });
 
-    // it('should allow update attributes until its maximum default group type limit', () => {
-    //   const update = {
-    //     attribute: 'presence',
-    //     value: MAX_DEFAULT_SOCIAL_LIMIT
-    //   };
-    //
-    //   const received = canUpdate(subject, update);
-    //
-    //   expect(received).toBeTruthy();
-    // });
-    //
-    // it('should allow update attributes until its maximum group type limit', () => {
-    //   const update = {
-    //     attribute: 'presence',
-    //     value: MAX_SOCIAL_LIMIT
-    //   };
-    //
-    //   const received = canUpdate(subject, update, groupsLimits);
-    //
-    //   expect(received).toBeTruthy();
-    // });
+    it('should allow update attributes until its maximum default group type limit', () => {
+      const update = {
+        attribute: 'presence',
+        value: 0
+      };
+
+      const received = canUpdate(subject, update);
+
+      expect(received).toBeTruthy();
+    });
+
+    it('should allow update attributes until its maximum group type limit', () => {
+      const update = {
+        attribute: 'presence',
+        value: 2
+      };
+
+      const received = canUpdate(subject, update, groupsLimits);
+
+      expect(received).toBeTruthy();
+    });
   });
 });

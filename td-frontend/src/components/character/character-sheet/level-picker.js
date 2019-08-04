@@ -6,10 +6,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle as fasCircle } from '@fortawesome/free-solid-svg-icons';
 import { faCircle as farCircle } from '@fortawesome/free-regular-svg-icons';
 
+const INCREMENT = 1;
+
 const LevelPicker = props => {
   console.log('=> LevelPicker');
 
-  const INCREMENT = 1;
   const { value, max } = props;
 
   const levels = map(
