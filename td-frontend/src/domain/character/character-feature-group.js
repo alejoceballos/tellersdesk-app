@@ -1,4 +1,4 @@
-import CharacterFeature from './character-feature-model';
+import CharacterFeature from './character-feature';
 import { isFunction } from '../../utils/utils';
 
 class CharacterFeatureGroup {

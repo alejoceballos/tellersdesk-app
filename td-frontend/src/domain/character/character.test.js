@@ -1,7 +1,7 @@
-import Character, { ATTRIBUTES, SOCIAL, MENTAL, PHYSICAL } from './character-model';
+import Character, { ATTRIBUTES, SOCIAL, MENTAL, PHYSICAL } from './character';
 import { forEach } from 'lodash';
 
-describe('Character Model', function () {
+describe('Character', function () {
   describe('On Character Change Callback', () => {
     const DEFAULT_VALUE = 1;
     const onCharacterChange = jest.fn();

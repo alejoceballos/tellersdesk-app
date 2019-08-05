@@ -1,5 +1,5 @@
-import { create, canUpdate, update } from './character.service';
-import Character, { SOCIAL } from '../models/character/character-model';
+import { create, canUpdate, update, creationCost } from './character.service';
+import Character, { SOCIAL } from '../domain/character/character';
 import { forEach } from 'lodash';
 
 describe('Character Service', () => {
@@ -24,7 +24,7 @@ describe('Character Service', () => {
     };
 
     beforeEach(() => {
-      subject = new Character();
+      subject = create();
 
       forEach(SOCIAL, (attribute, index) => {
         subject.attributes[attribute].value = index;
@@ -133,16 +133,32 @@ describe('Character Service', () => {
   });
 
   describe('Creation Cost', () => {
+    beforeEach(() => {
+      subject = create({ featureMaxValue: 10 });
+    });
+
     it('should have no cost for the first attribute', () => {
-      // TODO: Implement this test
+      subject.attributes['strength'].value = 1;
+      const cost = creationCost(subject);
+      expect(cost).toEqual(0);
     });
 
     it('should have cost 1 for second to fourth attribute', () => {
-      // TODO: Implement this test
+      subject.attributes['strength'].value = 4;
+      const cost = creationCost(subject);
+      expect(cost).toEqual(3);
     });
 
     it('should have cost 2 for the fifth attribute', () => {
-      // TODO: Implement this test
+      subject.attributes['strength'].value = 5;
+      const cost = creationCost(subject);
+      expect(cost).toEqual(5);
+    });
+
+    it('should have cost 2 for each attribute value after the fifth', () => {
+      subject.attributes['strength'].value = 10;
+      const cost = creationCost(subject);
+      expect(cost).toEqual(15);
     });
   });
 });

@@ -1,4 +1,4 @@
-import CharacterFeatureGroup from './character-feature-group-model';
+import CharacterFeatureGroup from './character-feature-group';
 import { isFunction } from '../../utils/utils';
 import { includes, reduce } from 'lodash';
 

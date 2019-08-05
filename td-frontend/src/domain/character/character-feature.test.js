@@ -1,4 +1,4 @@
-import CharacterFeature from './character-feature-model';
+import CharacterFeature from './character-feature';
 
 describe('CharacterFeature Model', function () {
   const onLevelChange = jest.fn();

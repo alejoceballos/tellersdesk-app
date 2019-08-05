@@ -1,6 +1,6 @@
 import { filter, map, fill } from 'lodash';
-import CharacterFeatureGroup from './character-feature-group-model';
-import CharacterFeature from './character-feature-model';
+import CharacterFeatureGroup from './character-feature-group';
+import CharacterFeature from './character-feature';
 
 describe('CharacterFeature Group', function () {
   const featureMaxValue = 4;

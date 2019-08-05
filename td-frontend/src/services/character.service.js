@@ -1,5 +1,5 @@
-import Character from '../models/character/character-model';
-import { get, cloneDeep } from 'lodash';
+import Character, { ATTRIBUTES } from '../domain/character/character';
+import { reduce, get, cloneDeep } from 'lodash';
 
 const DEFAULT = {
   ATTR_GROUP_LIMIT: {
@@ -12,9 +12,20 @@ const DEFAULT = {
 export const create = params => new Character(params);
 
 export const creationCost = instance => {
-  // TODO: Implement this function
-  return false;
+  return getTotalAttributesCreationCost(instance.attributes);
 };
+
+const getTotalAttributesCreationCost = attributes =>
+  reduce(
+    ATTRIBUTES,
+    (accumulator, attribute) => accumulator + getAttributeCreationCost(attributes[attribute].value),
+    0
+  );
+
+const getAttributeCreationCost = value =>
+  value <= 1 ? 0
+    : value < 5 ? value - 1
+      : 5 + (value - 5) * 2;
 
 export const canUpdate = (instance, update, limits = DEFAULT.ATTR_GROUP_LIMIT) => {
   const groupName = Character.getGroupNameByAttribute(update.attribute);
