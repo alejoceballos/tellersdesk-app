@@ -6,7 +6,8 @@
   - [ ] Create Attributes Section
     - [X] Create Level Picker
     - [X] Create Attributes Group
-    - [ ] Apply "5/4/3" points rule on creation
+    - [X] Apply "5/4/3" points rule on creation
+    - [ ] Apply "1/2/?" costs per attribute
   - [ ] Create Skills Section
     - [ ] Create Mental Skills Section
     - [ ] Create Mental Physical Section

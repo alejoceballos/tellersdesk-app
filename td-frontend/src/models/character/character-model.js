@@ -55,13 +55,15 @@ class Character {
     }
   }
 
-  getAttributesTotalByGroup = group => reduce(
-    Character.getAttributesNamesByGroup(group),
-    (accumulator, attribute) => {
-      return accumulator + this.attributes[attribute].value;
-    },
-    0
-  );
+  getAttributesTotalByGroup(group) {
+    return reduce(
+      Character.getAttributesNamesByGroup(group),
+      (accumulator, attribute) => {
+        return accumulator + this.attributes[attribute].value;
+      },
+      0
+    );
+  }
 
   static getGroupNameByAttribute = attribute =>
     includes(PHYSICAL, attribute) ? 'physical'

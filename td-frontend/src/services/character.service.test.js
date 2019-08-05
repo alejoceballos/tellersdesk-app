@@ -1,5 +1,5 @@
-import { create, canUpdate } from './character.service';
-import Character, { ATTRIBUTES, SOCIAL } from '../models/character/character-model';
+import { create, canUpdate, update } from './character.service';
+import Character, { SOCIAL } from '../models/character/character-model';
 import { forEach } from 'lodash';
 
 describe('Character Service', () => {
@@ -84,6 +84,65 @@ describe('Character Service', () => {
       const received = canUpdate(subject, update, groupsLimits);
 
       expect(received).toBeTruthy();
+    });
+  });
+
+  describe('Update', () => {
+    const attribute = {
+      attribute: 'presence',
+      value: 1
+    };
+
+    beforeEach(() => {
+      subject = new Character();
+    });
+
+    it('should update character', () => {
+      const updated = update(subject, attribute);
+
+      expect(updated.attributes.presence.value).toEqual(1);
+    });
+
+    it('should not update character if is out of group limits', () => {
+      const attribute = {
+        attribute: 'presence',
+        value: 4
+      };
+
+      const updated = update(subject, attribute);
+
+      expect(updated.attributes.presence.value).toEqual(0);
+    });
+
+    it('should return a new updated character instance', () => {
+      const updated = update(subject, attribute);
+
+      expect(updated).not.toBe(subject);
+    });
+
+    it('should return the same instance if no update was possible', () => {
+      const attribute = {
+        attribute: 'presence',
+        value: 4
+      };
+
+      const updated = update(subject, attribute);
+
+      expect(updated).toBe(subject);
+    });
+  });
+
+  describe('Creation Cost', () => {
+    it('should have no cost for the first attribute', () => {
+      // TODO: Implement this test
+    });
+
+    it('should have cost 1 for second to fourth attribute', () => {
+      // TODO: Implement this test
+    });
+
+    it('should have cost 2 for the fifth attribute', () => {
+      // TODO: Implement this test
     });
   });
 });

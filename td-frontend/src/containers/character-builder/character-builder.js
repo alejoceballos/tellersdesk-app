@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import CharacterSheet from '../../components/character/character-sheet';
-import { cloneDeep } from 'lodash';
-import { create } from '../../services/character.service';
+import { create, update } from '../../services/character.service';
 
 class CharacterBuilder extends Component {
   constructor(props) {
@@ -13,9 +12,9 @@ class CharacterBuilder extends Component {
   }
 
   changeAttribute = (attribute, value) => {
-    const clone = cloneDeep(this.state.character);
-    clone.attributes[attribute].value = value;
-    this.setState({ character: clone });
+    const character = this.state.character;
+    const updated = update(character, { attribute, value });
+    this.setState({ character: updated });
   };
 
   render() {
