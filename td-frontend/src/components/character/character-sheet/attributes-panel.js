@@ -16,14 +16,6 @@ const AttributesContainer = styled(BorderedStyle)`
 const AttributesPanel = (props) => {
   console.log('=> AttributesPanel');
 
-  const onLevelClick = (attribute, value) => {
-    props.onAttributeClick(
-      attribute, value
-    );
-  };
-
-  const maxValue = props.attributeMaxValue;
-
   const {
     strength,
     dexterity,
@@ -54,15 +46,20 @@ const AttributesPanel = (props) => {
     ]
   ];
 
-  const attributesGroups = groups.map((group, index) =>
-    <AttributeGroup
-      data-qa="attribute-group"
-      key={index}
-      maxValue={maxValue}
-      group={group}
-      onAttributeClick={(attribute, value) => onLevelClick(attribute, value)}
-    />
-  );
+  const { attributeMaxValue, onAttributeClick } = props;
+
+  const handleAttributeClick = (attribute, value) => onAttributeClick(attribute, value);
+
+  const attributesGroups = groups.map((group, index) => {
+    return (
+      <AttributeGroup
+        data-qa="attribute-group"
+        key={index}
+        maxValue={attributeMaxValue}
+        group={group}
+        onAttributeClick={handleAttributeClick}
+      />);
+  });
 
   return (
     <>
@@ -76,6 +73,10 @@ AttributesPanel.propTypes = {
   attributeMaxValue: PropTypes.number.isRequired,
   attributes: PropTypes.object.isRequired,
   onAttributeClick: PropTypes.func
+};
+
+AttributesPanel.defaultProptypes = {
+  onAttributeClick: () => {}
 };
 
 export default AttributesPanel;

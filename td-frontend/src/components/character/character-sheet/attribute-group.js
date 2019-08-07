@@ -36,26 +36,27 @@ const TotalContainer = styled(BorderedStyle)`
 const AttributeGroup = (props) => {
   console.log('=> AttributeGroup');
 
-  const onLevelClick = (attribute, value) =>
-    props.onAttributeClick(
-      attribute, value
-    );
+  const { group, onAttributeClick, maxValue } = props;
 
-  const attributesContainers = props.group.map(attribute =>
-    <AttributeContainer key={attribute.name}>
-      <NameContainer data-qa="attribute-name">{titleCase(attribute.name)}</NameContainer>
-      <LevelContainer>
-        <LevelPicker
-          max={props.maxValue}
-          value={attribute.value}
-          data-qa="level-picker"
-          onLevelClick={value => onLevelClick(attribute.name, value)}
-        />
-      </LevelContainer>
-    </AttributeContainer>
-  );
+  const attributesContainers = group.map(attribute => {
+    const { name, value } = attribute;
+    const handleLevelClick = clickedValue => onAttributeClick(name, clickedValue);
 
-  const attributesTotal = reduce(props.group, (accumulator, attribute) => accumulator + attribute.value, 0);
+    return (
+      <AttributeContainer key={name}>
+        <NameContainer data-qa="attribute-name">{titleCase(name)}</NameContainer>
+        <LevelContainer>
+          <LevelPicker
+            max={maxValue}
+            value={value}
+            data-qa="level-picker"
+            onLevelClick={handleLevelClick}
+          />
+        </LevelContainer>
+      </AttributeContainer>);
+  });
+
+  const attributesTotal = reduce(group, (accumulator, { value }) => accumulator + value, 0);
 
   return (
     <GroupContainer>
@@ -74,7 +75,11 @@ AttributeGroup.propTypes = {
       name: PropTypes.string.isRequired,
       value: PropTypes.number.isRequired
     }).isRequired),
-  onAttributeClick: PropTypes.func.isRequired
+  onAttributeClick: PropTypes.func
+};
+
+AttributeGroup.defaultProptypes = {
+  onAttributeClick: () => {}
 };
 
 const areEqual = (prevProps, nextProps) => isEqual(prevProps.group, nextProps.group);

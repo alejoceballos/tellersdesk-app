@@ -15,7 +15,7 @@ const LevelPicker = props => {
 
   const levels = map(
     new Array(max), (item, index) => {
-      const onCLick = () => {
+      const handleCLick = () => {
         const newValue = index + INCREMENT;
         props.onLevelClick(newValue);
       };
@@ -25,7 +25,7 @@ const LevelPicker = props => {
       const icon = isLevel ? fasCircle : farCircle;
 
       return (
-        <span data-qa={dataQa} key={uuid()} onClick={onCLick}>
+        <span data-qa={dataQa} key={uuid()} onClick={handleCLick}>
           <FontAwesomeIcon icon={icon} />
         </span>
       );
@@ -41,6 +41,10 @@ LevelPicker.propTypes = {
   value: PropTypes.number.isRequired,
   max: PropTypes.number.isRequired,
   onLevelClick: PropTypes.func
+};
+
+LevelPicker.defaultProptypes = {
+  onLevelClick: () => {}
 };
 
 const areEqual = (prevProps, nextProps) =>

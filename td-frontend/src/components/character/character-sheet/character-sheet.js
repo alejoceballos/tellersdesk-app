@@ -9,13 +9,9 @@ const Container = styled(BorderedStyle)``;
 const CharacterSheet = props => {
   console.log('=> CharacterSheet');
 
-  const onAttributeClick = (attribute, value) => {
-    props.onAttributeClick(
-      attribute, value
-    );
-  };
-
   const { attributes } = props.character;
+
+  const handleAttributeClick = (attribute, value) => props.onAttributeClick(attribute, value);
 
   return (
     <Container>
@@ -23,7 +19,7 @@ const CharacterSheet = props => {
         data-qa="attributes-panel"
         attributeMaxValue={attributes.featureMaxValue}
         attributes={attributes}
-        onAttributeClick={(attribute, value) => onAttributeClick(attribute, value)}
+        onAttributeClick={handleAttributeClick}
       />
     </Container>
   );
@@ -32,6 +28,10 @@ const CharacterSheet = props => {
 CharacterSheet.propTypes = {
   character: PropTypes.object.isRequired,
   onAttributeClick: PropTypes.func
+};
+
+CharacterSheet.defaultProptypes = {
+  onAttributeClick: () => {}
 };
 
 export default CharacterSheet;

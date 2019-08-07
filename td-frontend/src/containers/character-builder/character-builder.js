@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import CharacterSheet from '../../components/character/character-sheet';
 import { create, creationCost, update } from '../../services/character.service';
 import styled from 'styled-components/macro';
@@ -7,7 +7,7 @@ import BorderedStyle from '../../components/bordered-style';
 const CostContainer = styled(BorderedStyle)`
 `;
 
-class CharacterBuilder extends Component {
+class CharacterBuilder extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -16,7 +16,7 @@ class CharacterBuilder extends Component {
     };
   }
 
-  changeAttribute = (attribute, value) => {
+  handleAttributeClick = (attribute, value) => {
     const character = this.state.character;
     const updated = update(character, { attribute, value });
     this.setState({ character: updated });
@@ -26,11 +26,12 @@ class CharacterBuilder extends Component {
 
   render() {
     console.log('=> CharacterBuilder');
+
     return (
       <>
         <CharacterSheet
           character={this.state.character}
-          onAttributeClick={this.changeAttribute}
+          onAttributeClick={this.handleAttributeClick}
         />
         <CostContainer data-qa="total-cost">
           {`Cost: ${this.getCreationCost()}`}
