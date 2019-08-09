@@ -7,8 +7,6 @@ import AttributesPanel from './attributes-panel';
 const Container = styled(BorderedStyle)``;
 
 const CharacterSheet = props => {
-  console.log('=> CharacterSheet');
-
   const { attributes } = props.character;
 
   const handleAttributeClick = (attribute, value) => props.onAttributeClick(attribute, value);

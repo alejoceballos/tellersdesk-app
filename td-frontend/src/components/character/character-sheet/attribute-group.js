@@ -34,8 +34,6 @@ const TotalContainer = styled(BorderedStyle)`
 `;
 
 const AttributeGroup = (props) => {
-  console.log('=> AttributeGroup');
-
   const { group, onAttributeClick, maxValue } = props;
 
   const attributesContainers = group.map(attribute => {

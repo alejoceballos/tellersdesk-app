@@ -9,8 +9,6 @@ import { faCircle as farCircle } from '@fortawesome/free-regular-svg-icons';
 const INCREMENT = 1;
 
 const LevelPicker = props => {
-  console.log('=> LevelPicker');
-
   const { value, max } = props;
 
   const levels = map(

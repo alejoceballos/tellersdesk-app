@@ -14,8 +14,6 @@ const AttributesContainer = styled(BorderedStyle)`
 `;
 
 const AttributesPanel = (props) => {
-  console.log('=> AttributesPanel');
-
   const {
     strength,
     dexterity,

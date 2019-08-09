@@ -1,4 +1,8 @@
-import Character, { ATTRIBUTES, SOCIAL, MENTAL, PHYSICAL } from './character';
+import Character, {
+  SOCIAL_ATTRIBUTES,
+  MENTAL_ATTRIBUTES,
+  PHYSICAL_ATTRIBUTES
+} from './character';
 import { forEach } from 'lodash';
 
 describe('Character', function () {
@@ -9,7 +13,10 @@ describe('Character', function () {
 
     beforeEach(() => {
       character = new Character({ onCharacterChange });
+
       character.attributes.strength.value = DEFAULT_VALUE;
+      character.skills.academics.value = DEFAULT_VALUE;
+
       jest.resetAllMocks();
     });
 
@@ -19,57 +26,44 @@ describe('Character', function () {
       expect(onCharacterChange).toBeCalledWith(undefined, 'attribute', 'strength', NEW_VALUE);
     });
 
-    it('should NOT run callback when level value is left unchanged', () => {
+    it('should NOT run callback when attribute level value is left unchanged', () => {
       character.attributes.strength.value = DEFAULT_VALUE;
+      expect(onCharacterChange).toBeCalledTimes(0);
+    });
+
+    it('should run callback when changing skill value', () => {
+      const NEW_VALUE = 2;
+      character.skills.academics.value = NEW_VALUE;
+      expect(onCharacterChange).toBeCalledWith(undefined, 'skill', 'academics', NEW_VALUE);
+    });
+
+    it('should NOT run callback when skill level value is left unchanged', () => {
+      character.skills.academics.value = DEFAULT_VALUE;
       expect(onCharacterChange).toBeCalledTimes(0);
     });
   });
 
   describe('Attributes', () => {
     describe('Get Group Name By Attribute', () => {
-      it('should have strength attribute in physical group', () => {
-        const attributeGroupName = Character.getGroupNameByAttribute('strength');
-        expect(attributeGroupName).toEqual('physical');
+      it('should have all physical group attributes', () => {
+        PHYSICAL_ATTRIBUTES.forEach(attribute => {
+          const attributeGroupName = Character.getGroupNameByAttribute(attribute);
+          expect(attributeGroupName).toEqual('physical');
+        });
       });
 
-      it('should have dexterity attribute in physical group', () => {
-        const attributeGroupName = Character.getGroupNameByAttribute('dexterity');
-        expect(attributeGroupName).toEqual('physical');
+      it('should have all social group attributes', () => {
+        SOCIAL_ATTRIBUTES.forEach(attribute => {
+          const attributeGroupName = Character.getGroupNameByAttribute(attribute);
+          expect(attributeGroupName).toEqual('social');
+        });
       });
 
-      it('should have stamina attribute in physical group', () => {
-        const attributeGroupName = Character.getGroupNameByAttribute('stamina');
-        expect(attributeGroupName).toEqual('physical');
-      });
-
-      it('should have presence attribute in social group', () => {
-        const attributeGroupName = Character.getGroupNameByAttribute('presence');
-        expect(attributeGroupName).toEqual('social');
-      });
-
-      it('should have manipulation attribute in social group', () => {
-        const attributeGroupName = Character.getGroupNameByAttribute('manipulation');
-        expect(attributeGroupName).toEqual('social');
-      });
-
-      it('should have composure attribute in social group', () => {
-        const attributeGroupName = Character.getGroupNameByAttribute('composure');
-        expect(attributeGroupName).toEqual('social');
-      });
-
-      it('should have intelligence attribute in mental group', () => {
-        const attributeGroupName = Character.getGroupNameByAttribute('intelligence');
-        expect(attributeGroupName).toEqual('mental');
-      });
-
-      it('should have wits attribute in mental group', () => {
-        const attributeGroupName = Character.getGroupNameByAttribute('wits');
-        expect(attributeGroupName).toEqual('mental');
-      });
-
-      it('should have resolve attribute in mental group', () => {
-        const attributeGroupName = Character.getGroupNameByAttribute('resolve');
-        expect(attributeGroupName).toEqual('mental');
+      it('should have all mental group attributes', () => {
+        MENTAL_ATTRIBUTES.forEach(attribute => {
+          const attributeGroupName = Character.getGroupNameByAttribute(attribute);
+          expect(attributeGroupName).toEqual('mental');
+        });
       });
 
       it('should not have a group for invalid attribute', () => {
@@ -86,26 +80,42 @@ describe('Character', function () {
 
       it('should have attributes for physical group', () => {
         const attributes = Character.getAttributesNamesByGroup('physical');
-        expect(attributes).toEqual(PHYSICAL);
+        expect(attributes).toEqual(PHYSICAL_ATTRIBUTES);
       });
 
       it('should have attributes for social group', () => {
         const attributes = Character.getAttributesNamesByGroup('social');
-        expect(attributes).toEqual(SOCIAL);
+        expect(attributes).toEqual(SOCIAL_ATTRIBUTES);
       });
 
       it('should have attributes for mental group', () => {
         const attributes = Character.getAttributesNamesByGroup('mental');
-        expect(attributes).toEqual(MENTAL);
+        expect(attributes).toEqual(MENTAL_ATTRIBUTES);
       });
     });
 
     describe('Get Attributes Total By Group', () => {
       const character = new Character({ featureMaxValue: 8 });
 
-      forEach(ATTRIBUTES,
+      const PHYSICAL_START = 0;
+      const SOCIAL_START = 3;
+      const MENTAL_START = 6;
+
+      forEach(PHYSICAL_ATTRIBUTES,
         (attribute, index) => {
-          character.attributes[attribute].value = index;
+          character.attributes[attribute].value = PHYSICAL_START + index;
+        }
+      );
+
+      forEach(SOCIAL_ATTRIBUTES,
+        (attribute, index) => {
+          character.attributes[attribute].value = SOCIAL_START + index;
+        }
+      );
+
+      forEach(MENTAL_ATTRIBUTES,
+        (attribute, index) => {
+          character.attributes[attribute].value = MENTAL_START + index;
         }
       );
 

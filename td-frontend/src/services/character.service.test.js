@@ -1,5 +1,5 @@
 import { create, canUpdate, update, creationCost } from './character.service';
-import Character, { SOCIAL } from '../domain/character/character';
+import Character, { SOCIAL_ATTRIBUTES } from '../domain/character/character';
 import { forEach } from 'lodash';
 
 describe('Character Service', () => {
@@ -26,7 +26,7 @@ describe('Character Service', () => {
     beforeEach(() => {
       subject = create();
 
-      forEach(SOCIAL, (attribute, index) => {
+      forEach(SOCIAL_ATTRIBUTES, (attribute, index) => {
         subject.attributes[attribute].value = index;
       });
     });

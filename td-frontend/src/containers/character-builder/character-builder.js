@@ -25,8 +25,6 @@ class CharacterBuilder extends PureComponent {
   getCreationCost = () => creationCost(this.state.character);
 
   render() {
-    console.log('=> CharacterBuilder');
-
     return (
       <>
         <CharacterSheet
