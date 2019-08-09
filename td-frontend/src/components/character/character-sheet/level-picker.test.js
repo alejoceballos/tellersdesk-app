@@ -18,7 +18,7 @@ describe('Render', () => {
     expect(wrapper.find({ 'data-qa': 'level-picker-no' })).toHaveLength(max - level);
   });
 
-  it('should call callback on click', () => {
+  it('should increase the level on clicking', () => {
     const max = 5;
     const level = 3;
     const level4 = 4;
@@ -29,5 +29,33 @@ describe('Render', () => {
     wrapper.find('[data-qa="level-picker-no"]').first().simulate('click');
 
     expect(doSomethingOnCLick).toHaveBeenCalledWith(level4);
+  });
+
+  it('should decrease the level on clicking', () => {
+    const max = 5;
+    const level = 3;
+    const level2 = 2;
+    const doSomethingOnCLick = jest.fn();
+
+    const wrapper = shallow(<LevelPicker max={max} value={level} onLevelClick={doSomethingOnCLick} />);
+
+    const levelTwoIndex = 1;
+
+    wrapper.find('[data-qa="level-picker-yes"]').at(levelTwoIndex).simulate('click');
+
+    expect(doSomethingOnCLick).toHaveBeenCalledWith(level2);
+  });
+
+  it('should zero the level when clicking on the first level of an already level one picker', () => {
+    const max = 5;
+    const level = 1;
+    const level0 = 0;
+    const doSomethingOnCLick = jest.fn();
+
+    const wrapper = shallow(<LevelPicker max={max} value={level} onLevelClick={doSomethingOnCLick} />);
+
+    wrapper.find('[data-qa="level-picker-yes"]').first().simulate('click');
+
+    expect(doSomethingOnCLick).toHaveBeenCalledWith(level0);
   });
 });

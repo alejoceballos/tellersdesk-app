@@ -16,7 +16,9 @@ const LevelPicker = props => {
   const levels = map(
     new Array(max), (item, index) => {
       const handleCLick = () => {
-        const newValue = index + INCREMENT;
+        const clickedValue = index + INCREMENT;
+        const isClickingOneAgain = clickedValue === 1 && clickedValue === value;
+        const newValue = isClickingOneAgain ? 0 : clickedValue;
         props.onLevelClick(newValue);
       };
 
