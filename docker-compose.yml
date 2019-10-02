@@ -1,0 +1,22 @@
+version: '3'
+
+networks:
+  td-network:
+    driver: bridge
+
+services:
+  td-frontend:
+    build:
+      context: ./td-frontend
+      dockerfile: Dockerfile
+    command: sh -c "yarn install && yarn start"
+    networks:
+      - td-network
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    ports:
+      - 3000:3000
+    working_dir: /td-frontend
+    volumes:
+      - ./td-frontend:/td-frontend:cached
