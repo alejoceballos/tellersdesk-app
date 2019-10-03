@@ -6,6 +6,7 @@ networks:
 
 services:
   td-frontend:
+    container_name: td-frontend
     build:
       context: ./td-frontend
       dockerfile: Dockerfile
