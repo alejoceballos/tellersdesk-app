@@ -59,10 +59,10 @@ Go to `File -> Settings -> File Watchers -> Add` and set the following values:
 - **Name:** ESLint
 - **File Type:** JavaScript
 - **Scope:** Current File
-- **Program:** C:\Users\\<username>\AppData\Roaming\npm\eslint
+- **Program:** C:\Users\[username]\AppData\Roaming\npm\eslint
 - **Arguments:** --fix $FilePath$
 - **Output paths to refresh:** $FileDir$
-- **Working directory:** C:\Users\\<username>\AppData\Roaming\npm
+- **Working directory:** C:\Users\[username]\AppData\Roaming\npm
 - Uncheck `Auto-save edited files to trigger the watcher`
 - Uncheck `Trigger the watcher on external changes`
 
@@ -77,9 +77,9 @@ Go to `File -> Settings -> File Watchers -> Add` and set the following values:
 - **Name:** Prettier
 - **File Type:** JavaScript
 - **Scope:** Current File
-- **Program:** C:\Users\\<username>\AppData\Roaming\npm\prettier
+- **Program:** C:\Users\[username]\AppData\Roaming\npm\prettier
 - **Arguments:** --write $FilePath$
 - **Output paths to refresh:** $FileDir$
-- **Working directory:** C:\Users\\<username>\AppData\Roaming\npm
+- **Working directory:** C:\Users\[username]\AppData\Roaming\npm
 - Uncheck `Auto-save edited files to trigger the watcher`
 - Uncheck `Trigger the watcher on external changes`
