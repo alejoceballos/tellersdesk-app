@@ -40,7 +40,7 @@ Go to `File -> Settings -> File Watchers -> Add` and set the following values:
 - Uncheck `Auto-save edited files to trigger the watcher`
 - Uncheck `Trigger the watcher on external changes`
 
-#### On Windows
+#### On Windows (using Docker)
 
 Using PowerShell or any other Windows terminal, install eslint dependencies
 ```
