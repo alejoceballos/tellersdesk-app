@@ -15,7 +15,9 @@ describe('Render', () => {
     const wrapper = shallow(<LevelPicker max={max} value={level} />);
 
     expect(wrapper.find({ 'data-qa': 'level-picker-yes' })).toHaveLength(level);
-    expect(wrapper.find({ 'data-qa': 'level-picker-no' })).toHaveLength(max - level);
+    expect(wrapper.find({ 'data-qa': 'level-picker-no' })).toHaveLength(
+      max - level
+    );
   });
 
   it('should increase the level on clicking', () => {
@@ -24,9 +26,14 @@ describe('Render', () => {
     const level4 = 4;
     const doSomethingOnCLick = jest.fn();
 
-    const wrapper = shallow(<LevelPicker max={max} value={level} onLevelClick={doSomethingOnCLick} />);
+    const wrapper = shallow(
+      <LevelPicker max={max} value={level} onLevelClick={doSomethingOnCLick} />
+    );
 
-    wrapper.find('[data-qa="level-picker-no"]').first().simulate('click');
+    wrapper
+      .find('[data-qa="level-picker-no"]')
+      .first()
+      .simulate('click');
 
     expect(doSomethingOnCLick).toHaveBeenCalledWith(level4);
   });
@@ -37,11 +44,16 @@ describe('Render', () => {
     const level2 = 2;
     const doSomethingOnCLick = jest.fn();
 
-    const wrapper = shallow(<LevelPicker max={max} value={level} onLevelClick={doSomethingOnCLick} />);
+    const wrapper = shallow(
+      <LevelPicker max={max} value={level} onLevelClick={doSomethingOnCLick} />
+    );
 
     const levelTwoIndex = 1;
 
-    wrapper.find('[data-qa="level-picker-yes"]').at(levelTwoIndex).simulate('click');
+    wrapper
+      .find('[data-qa="level-picker-yes"]')
+      .at(levelTwoIndex)
+      .simulate('click');
 
     expect(doSomethingOnCLick).toHaveBeenCalledWith(level2);
   });
@@ -52,9 +64,14 @@ describe('Render', () => {
     const level0 = 0;
     const doSomethingOnCLick = jest.fn();
 
-    const wrapper = shallow(<LevelPicker max={max} value={level} onLevelClick={doSomethingOnCLick} />);
+    const wrapper = shallow(
+      <LevelPicker max={max} value={level} onLevelClick={doSomethingOnCLick} />
+    );
 
-    wrapper.find('[data-qa="level-picker-yes"]').first().simulate('click');
+    wrapper
+      .find('[data-qa="level-picker-yes"]')
+      .first()
+      .simulate('click');
 
     expect(doSomethingOnCLick).toHaveBeenCalledWith(level0);
   });
